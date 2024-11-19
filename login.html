@@ -20,8 +20,9 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-<main>
-    <form id="loginForm" action="courses.html" method="POST">
+
+  <main>
+    <form id="loginForm" method="POST">
         <div class="container">
         </div>
         <div class="container">
@@ -35,27 +36,64 @@
             <button type="button" class="cancelbtn">Cancel</button>
             <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
-    </main>
+    </form>
+  </main>
 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2024 Green Academy,All Rights Reserved.</p>
-      <p>Email: greenacademy@gmail.com ,  Phone: +250789101234</p>
-    </footer>
-    <script src="login.js" type="module"></script>
-    <script>
-      import {login,getLoggedUser} from "./scripts.js"
-      const loginForm = document.getElementById("loginForm")
-      loginForm.addEventListener("submit", (e) => { 
-        e.preventDefault()
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-      login(username, password);
-      const user = getLoggedInUser();
-      if (user) {
-        alert(`Logged in as: ${user.username}`);
-      }
-      })
-    </script>
-  </body>
-  </html>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Green Academy, All Rights Reserved.</p>
+    <p>Email: greenacademy@gmail.com , Phone: +250789101234</p>
+  </footer>
+
+ <script type="module">
+  function login(username, password) {
+    if (username && password) {
+      const user = { username: username };
+      
+      // Store user data in LocalStorage for persistent personalization
+      localStorage.setItem('user', JSON.stringify(user));
+
+      // Set a session cookie that expires in 1 hour
+      document.cookie = `user=${username}; path=/; max-age=${60 * 60}`;
+      console.log('Logged in as:', user);
+      setTimeout(() => {
+      window.location.href = 'courses.html';
+    }, 3000)
+    } else {
+      alert('Invalid credentials');
+    }
+  }
+
+  function getLoggedInUser() {
+    const userFromLocalStorage = localStorage.getItem('user');
+    return userFromLocalStorage ? JSON.parse(userFromLocalStorage) : null;
+  }
+
+  function checkUserLoggedIn() {
+    // Check if a user exists in cookies or local storage
+    const userFromCookie = document.cookie.split('; ').find(row => row.startsWith('user='));
+    const user = userFromCookie ? userFromCookie.split('=')[1] : getLoggedInUser();
+    return user ? user : null;
+  }
+
+  // Check if the user is logged in on page load
+  window.onload = function() {
+    const user = checkUserLoggedIn();
+    if (user) {
+      console.log('User is already logged in as:', user);
+    }
+  }
+
+  const loginForm = document.getElementById("loginForm");
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    login(username, password);
+
+  });
+</script>
+
+</body>
+</html>

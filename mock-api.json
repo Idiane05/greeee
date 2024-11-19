@@ -1,0 +1,66 @@
+{
+    "courses": [
+      {
+        "id": 1,
+        "title": "Climate Change conservation Project",
+        "description": "Explore the basics of climate change and how it affects our planet.",
+        "image": "images/climate.jpg",
+        "url": "https://www.undp.org/sites/g/files/zskgke326/files/migration/eurasia/Climatebox_textbook_EN.pdf",
+        "instructorId": 1,
+        "resources": [1, 2]
+      },
+      {
+        "id": 2,
+        "title": "Biodiversity and Conservation",
+        "description": "Learn about the importance of biodiversity and the efforts to conserve it.",
+        "image": "images/download.jpg",
+        "url": "courses.html",
+        "instructorId": 2,
+        "resources": [3, 4]
+      },
+      {
+        "id": 3,
+        "title": "Biodiversity and Conservation",
+        "description": "Learn about the importance of biodiversity and the efforts to conserve it.",
+        "image": "images/download.jpg",
+        "url": "courses.html",
+        "instructorId": 2,
+        "resources": [3, 4]
+      }
+    ],
+    "instructors": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "bio": "John is a web development expert with 10+ years of experience."
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "bio": "Jane is a React.js specialist with a passion for teaching."
+      }
+    ],
+    "resources": [
+      {
+        "id": 1,
+        "title": "HTML Basics",
+        "url": "https://example.com/html-basics"
+      },
+      {
+        "id": 2,
+        "title": "CSS Fundamentals",
+        "url": "https://example.com/css-fundamentals"
+      },
+      {
+        "id": 3,
+        "title": "React Documentation",
+        "url": "https://reactjs.org/docs/getting-started.html"
+      },
+      {
+        "id": 4,
+        "title": "Advanced React Patterns",
+        "url": "https://example.com/react-patterns"
+      }
+    ]
+  }
+  

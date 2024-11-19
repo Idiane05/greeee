@@ -6,7 +6,6 @@
   <meta name="description" content="Explore the available courses on sustainability and conservation at Green Academy.">
   <title>Course Catalog | Green Academy</title>
   <link rel="stylesheet" href="main.css">
-  
 </head>
 <body>
   <!-- Header -->
@@ -57,75 +56,72 @@
     </section>
 
     <!-- Course List -->
-    <section class="course-list">
-      <article class="course-item">
-        <img src="images/climate.jpg" alt="Course image: Climate Change">
-        <h3>Climate Change</h3>
-        <p>Explore the basics of climate change and how it affects our planet.</p>
-        <a href="https://www.undp.org/sites/g/files/zskgke326/files/migration/eurasia/Climatebox_textbook_EN.pdf " class="enroll-btn">Enroll Now</a>
-       
-      </article>
+    <section class="course-list" id="course-list">
+      <!-- Dynamically populated courses will be inserted here -->
+    </section>
 
-      <article class="course-item">
-        <img src="images/download.jpg" alt="Course image: Biodiversity and Conservation">
-        <h3>Biodiversity and Conservation</h3>
-        <p>Learn about the importance of biodiversity and the efforts to conserve it.</p>
-        <a href="courses.html" class="enroll-btn">Enroll Now</a>
-      </article>
-
-      <article class="course-item">
-        <img src="images/energy.jpg" alt="Course image: Renewable Energy Solutions">
-        <h3>Renewable Energy Solutions</h3>
-        <p>Understand the fundamentals of renewable energy and its impact on sustainability.</p>
-        <a href="courses.html" class="enroll-btn">Enroll Now</a>
-      </article>
-
-      <!-- Add more courses as needed -->
-       <!-- Videos Section -->
-    
-  
-          <!-- Videos Section -->
-<section class="videos">
-  <h2>Learn Through Videos</h2>
-  <p>Watch these engaging videos on conservation and sustainability topics:</p>
-  <div class="video-grid">
-    <div class="video-item">
-      <iframe width="560" height="315" 
-              src="https://www.youtube.com/embed/SDRxfuEvqGg" 
-              title="YouTube video player" frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-      </iframe>
-    </div>
-
-    <div class="video-item">
-      <iframe width="560" height="315" 
-              src="https://www.youtube.com/embed/-Lu0rwy_sAU" 
-              title="YouTube video player" frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-      </iframe>
-    </div>
-
-    <div class="video-item">
-      <iframe width="560" height="315" 
-              src="https://www.youtube.com/embed/e-yAO267tvE" 
-              title="YouTube video player" frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-</section>
+    <!-- Videos Section -->
+    <section class="videos">
+      <h2>Learn Through Videos</h2>
+      <p>Watch these engaging videos on conservation and sustainability topics:</p>
+      <div class="video-grid">
+        <div class="video-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/SDRxfuEvqGg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-      </section>
+
+        <div class="video-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/-Lu0rwy_sAU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-item">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/e-yAO267tvE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
     </section>
   </main>
 
   <!-- Footer -->
   <footer>
-  <p>&copy; 2024 Green Academy,All Rights Reserved.</p>
-    <p>Email: greenacademy@gmail.com ,  Phone: +250789101234</p>
+    <p>&copy; 2024 Green Academy, All Rights Reserved.</p>
+    <p>Email: greenacademy@gmail.com , Phone: +250789101234</p>
   </footer>
+
+  <script type="module">
+    // Function to fetch course data from the mock API
+    async function fetchCourseData() {
+      try {
+        const response = await fetch('mock-api.json').then(()=>{
+          console.log("Course data", JSON.stringify(response));
+        }).catch((error)=>{
+          console.error("Error fetching course data:", error);
+        })
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+    
+        const courseList = document.getElementById('course-list');
+    
+        data.courses.forEach(course => {
+          const courseElement = document.createElement('article');
+          courseElement.classList.add('course-item');
+          courseElement.innerHTML = ` 
+            <img src="${course.image}" alt="Course image: ${course.title}" style="width:240px; height: 100px;">
+            <h3>${course.title}</h3>
+            <p>${course.description}</p>
+            <a href="${course.url}" class="enroll-btn">Enroll Now</a>
+          `;
+          courseList.appendChild(courseElement);
+        });
+      } catch (error) {
+        console.error('Error fetching course data:', error);
+      }
+    }
+    
+    
+
+    // Call the function to load course data on page load
+    fetchCourseData();
+  </script>
 </body>
 </html>

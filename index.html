@@ -69,5 +69,20 @@
     <p>&copy; 2024 Green Academy,All Rights Reserved.</p>
     <p>Email: greenacademy@gmail.com ,  Phone: +250789101234</p>
   </footer>
+
+  <script type="module">
+    function displayPersonalizedGreeting() {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        document.getElementById('welcomeMessage').innerHTML = `Welcome back, ${user.username}!`;
+      }
+    }
+  
+    // Display personalized greeting when the page loads
+    displayPersonalizedGreeting();
+  </script>
+  
+  <div id="welcomeMessage"></div>
+  
 </body>
 </html>

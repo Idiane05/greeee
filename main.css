@@ -744,3 +744,51 @@
         gap: 10px;
     }
   }
+
+
+  .course-item img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover; /* This ensures the image maintains its aspect ratio without distortion */
+  }
+
+  /* Add padding to each course item to prevent the content from touching the container edges */
+.course-item {
+  padding: 20px;      /* Adds space inside the box */
+  margin: 10px;       /* Optional: adds space between the course items */
+  background-color: #f9f9f9;  /* Optional: gives the box a light background color */
+  border-radius: 8px; /* Optional: rounds the corners of the box */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}
+
+.course-item img {
+  width: 240px;       /* Set the image width */
+  height: 100px;      /* Set the image height */
+  object-fit: cover;  /* Ensures the image covers the box while maintaining its aspect ratio */
+  object-position: center; /* Optional: ensures the image is centered */
+  margin-bottom: 10px; /* Adds space between the image and the text */
+}
+
+.course-item h3 {
+  font-size: 18px;     /* Set the font size for the course title */
+  margin-bottom: 10px; /* Adds space between the title and description */
+}
+
+.course-item p {
+  font-size: 14px;     /* Set the font size for the description */
+  margin-bottom: 10px; /* Adds space between the description and button */
+}
+
+.enroll-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green color */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.enroll-btn:hover {
+  background-color: #45a049; /* Darker green when hovered */
+}
