@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about the mission and team behind Green Academy.">
+  <title>Login</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+   <!-- Header -->
+   <header>
+    <img src="images/academy.png" alt="Green Academy Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="courses.html">Courses</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+<main>
+    <form id="loginForm" action="courses.html" method="POST">
+        <div class="container">
+        </div>
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" id="username" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+            <button type="submit">Login</button>
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Green Academy,All Rights Reserved.</p>
+      <p>Email: greenacademy@gmail.com ,  Phone: +250789101234</p>
+    </footer>
+    <script src="login.js" type="module"></script>
+    <script>
+      import {login,getLoggedUser} from "./scripts.js"
+      const loginForm = document.getElementById("loginForm")
+      loginForm.addEventListener("submit", (e) => { 
+        e.preventDefault()
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      login(username, password);
+      const user = getLoggedInUser();
+      if (user) {
+        alert(`Logged in as: ${user.username}`);
+      }
+      })
+    </script>
+  </body>
+  </html>

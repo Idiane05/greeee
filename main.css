@@ -1,0 +1,746 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding-top: 60px;
+  }
+  
+  header {
+    background-color: hsl(0, 0%, 99%);
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  header .logo {
+    width: 50px;
+  }
+  
+  nav {
+    display: flex;
+    gap: 2rem; /* Adjusted the gap between nav links */
+  }
+  
+  nav a {
+    color: rgb(22, 18, 18);
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  nav a.active {
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main Content Styles */
+  main {
+    margin: 2rem 0;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: url('images/restore.jpg') no-repeat center center/cover;
+    padding: 4rem 2rem;
+    color: rgb(15, 14, 14);
+    text-align: center;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .hero-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* Featured Courses Section */
+  .featured-courses {
+    margin: 2rem 0;
+    text-align: center;
+  }
+  
+  .featured-courses h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .course-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(9, 252, 110, 0.1);
+    text-align: center;
+  }
+  
+  .course-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .course-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .course-card p {
+    margin-bottom: 1rem;
+  }
+  
+  .enroll-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .enroll-btn:hover {
+    background-color: #45a049;
+  }
+  
+  /* Call to Action Section */
+  .call-to-action {
+    background-color: #4CAF50;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .call-to-action h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .call-to-action p {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: rgb(247, 247, 247);
+    color: #0e0f0e;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .cta-btn:hover {
+    background-color: #f4f4f4;
+  }
+  
+  /* About Us Page */
+  .about-banner {
+    background-color: #81C784;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  
+  .our-mission, .our-team {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .our-mission h2, .our-team h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+  }
+  
+  .our-team {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  
+  .team-member {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .team-member img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+  }
+  
+  .team-member h3 {
+    margin-top: 10px;
+    color: #0d0f0e;
+  }
+  
+  
+  /* Our Values Section */
+  .our-values {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .our-values h2 {
+    color: #4CAF50; /* Green heading color */
+    margin-bottom: 40px;
+  }
+  
+  .values-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .value-card {
+    background-color: white;
+    border: 1px solid #4CAF50;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .value-card h3 {
+    color: #4CAF50;
+    margin-bottom: 15px;
+  }
+  
+  .value-card p {
+    color: #101111; /* Gray text color */
+  }
+  
+  /* Responsive Design for Our Values Section */
+  @media (max-width: 768px) {
+    .values-grid {
+      flex-direction: column;
+    }
+  
+    .value-card {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #070808;
+    color: rgb(248, 248, 248);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  
+  footer p {
+    margin: 0.5rem 0;
+  }
+  
+  /* Contact Us Page */
+  .contact-banner {
+    background-color: #079643;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  
+  .contact-form {
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .contact-form label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .contact-form label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #4CAF50;
+  }
+  
+  .contact-form button {
+    background-color: #06812b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .contact-form button:hover {
+    background-color: #FFEB3B;
+    color: #08b363;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    nav {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+  
+    .hero-content p {
+      font-size: 1rem;
+    }
+  
+    .featured-courses h2 {
+      font-size: 1.75rem;
+    }
+  
+    .call-to-action h2 {
+      font-size: 1.75rem;
+    }
+  
+    .call-to-action p {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-content h1 {
+      font-size: 1.75rem;
+    }
+  
+    .hero-content p {
+      font-size: 0.9rem;
+    }
+  
+    .courses-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .hero-btn, .enroll-btn, .cta-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  
+    .course-card h3 {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Course Catalog Banner */
+  .course-banner {
+    background-color: #81C784; /* Light Green */
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .course-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .course-banner p {
+    font-size: 1.2rem;
+  }
+  
+  /* Search and Filter Section */
+  .search-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  
+  .search-bar {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+  }
+  
+  .search-bar label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #4CAF50; /* Green border */
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+  }
+  
+  .filters label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  .filters select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #4CAF50;
+    background-color: white;
+    font-size: 1rem;
+    width: 140px;
+    margin-right: 15px;
+  }
+  
+  /* Course List */
+  .course-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 0;
+  }
+  
+  .course-item {
+    background-color: white;
+    border: 1px solid #4CAF50;
+    border-radius: 10px;
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .course-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    }
+    
+    .course-item h3 {
+      color: #4CAF50;
+      margin-top: 10px;
+    }
+    
+    .course-item p {
+      color: #0a0b0c;
+      margin-bottom: 20px;
+    }
+    
+    .course-item button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .course-item button:hover {
+      background-color: #FFEB3B; /* Bright Yellow on hover */
+      color: #004D40; /* Dark Teal text on hover */
+    }
+    
+    /* Responsive Design for Course Catalog */
+    @media (max-width: 768px) {
+      .search-filter {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    
+      .search-bar,
+      .filters {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+    
+      .course-list {
+        flex-direction: column;
+      }
+    
+      .course-item {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+    }
+  
+  /* Videos Section */
+  .videos {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .videos h2 {
+    color: #4CAF50; /* Primary Green for the heading */
+    margin-bottom: 20px;
+  }
+  
+  .videos p {
+    color: #0f1011; /* Gray for text */
+    margin-bottom: 40px;
+  }
+  
+  .video-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .video-item {
+    width: 32%;
+    margin-bottom: 20px;
+  }
+  
+  /* Ensure that iframes act as block elements and remove unnecessary spacing */
+  .video-item iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: none; /* Remove iframe border if present */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Responsive Design for Videos Section */
+  @media (max-width: 768px) {
+    .video-grid {
+      flex-direction: column;
+    }
+  
+    .video-item {
+      width: 1000%;
+      margin-bottom: 40px; /* Corrected spacing */
+    }
+  }
+  
+  /* Login Page Styles */
+  #loginForm {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Added to ensure proper layering */
+    z-index: 1; /* Ensure form is above other elements */
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  
+  .container label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .container input[type="text"],
+  .container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  button[type="submit"], 
+  button.cancelbtn {
+    background-color: #0ea513;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative; /* Ensure buttons remain interactive */
+    z-index: 2; /* Prioritize buttons over other elements */
+  }
+  
+  button.cancelbtn {
+    background-color: #079e41;
+  }
+  
+  button[type="submit"]:hover, 
+  button.cancelbtn:hover {
+    background-color: #149e1b;
+  }
+  
+  .cancelbtn:hover {
+    background-color: #d32f2f;
+  }
+  
+  .psw {
+    float: right;
+  }
+  
+  /* Responsive Styles for Login Form */
+  @media (max-width: 768px) {
+    #loginForm {
+      padding: 15px;
+    }
+  
+    .container input[type="text"],
+    .container input[type="password"] {
+      padding: 8px;
+    }
+  
+    button[type="submit"], 
+    button.cancelbtn {
+      padding: 8px 15px;
+    }
+  
+    .psw {
+      float: none;
+      text-align: center;
+      display: block;
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #loginForm {
+      padding: 10px;
+    }
+  
+    button[type="submit"], 
+    button.cancelbtn {
+      padding: 7px 12px;
+    }
+  }
+  
+  body {
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Form Container */
+  .register-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .register-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #0aaa52;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+  }
+  
+  button[type="send"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #006d40;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[type="send"]:hover {
+    background-color: #004a3f;
+  }
+  
+  footer p {
+    margin: 0.5rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .register-container {
+        padding: 1.5rem;
+    }
+    
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+  
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+  }
