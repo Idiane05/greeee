@@ -45,13 +45,11 @@
 
   <script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); 
 
-        // Get login credentials from the form
         const enteredUsername = document.getElementById('username').value;
         const enteredPassword = document.getElementById('password').value;
 
-        // Retrieve the stored user data from localStorage
         const storedUser = localStorage.getItem('user');
         if (!storedUser) {
             alert('No user found. Please register first.');
@@ -60,10 +58,10 @@
 
         const user = JSON.parse(storedUser);
 
-        // Validate credentials
+        
         if (user.email === enteredUsername && user.password === enteredPassword) {
             alert('Login successful!');
-            window.location.href = 'courses.html'; // Navigate to the Contact page
+            window.location.href = 'courses.html'; 
         } else {
             alert('Invalid username or password.');
         }
