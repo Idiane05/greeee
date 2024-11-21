@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about the mission and team behind Green Academy.">
+  <title>Login</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+   <!-- Header -->
+   <header>
+    <img src="images/academy.png" alt="Green Academy Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="courses.html">Courses</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="loginForm">
+        <div class="container">
+            <label for="uname"><b>Email</b></label>
+            <input type="email" placeholder="Enter Username" name="uname" id="username" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+            <button type="submit">Login</button>
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Green Academy, All Rights Reserved.</p>
+    <p>Email: greenacademy@gmail.com , Phone: +250789101234</p>
+  </footer>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get login credentials from the form
+        const enteredUsername = document.getElementById('username').value;
+        const enteredPassword = document.getElementById('password').value;
+
+        // Retrieve the stored user data from localStorage
+        const storedUser = localStorage.getItem('user');
+        if (!storedUser) {
+            alert('No user found. Please register first.');
+            return;
+        }
+
+        const user = JSON.parse(storedUser);
+
+        // Validate credentials
+        if (user.email === enteredUsername && user.password === enteredPassword) {
+            alert('Login successful!');
+            window.location.href = 'courses.html'; // Navigate to the Contact page
+        } else {
+            alert('Invalid username or password.');
+        }
+    });
+  </script>
+</body>
+</html>
+
+
