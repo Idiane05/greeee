@@ -91,8 +91,11 @@
       font-size: 16px;
     }
 
-    #quiz-results div p {
-      margin-bottom: 8px;
+    #timer {
+      font-size: 20px;
+      font-weight: bold;
+      color: red;
+      text-align: center;
     }
 
     .correct-answer {
@@ -128,13 +131,15 @@
 <body>
   <main>
     <h1>Green Academy Quiz</h1>
-    <section id="quiz-container">
-    </section>
-    <section id="quiz-results" style="display: none;">
-    </section>
+    <div id="timer">Time remaining: 10:00</div>
+    <section id="quiz-container"></section>
+    <section id="quiz-results" style="display: none;"></section>
   </main>
 
   <script>
+    let countdown;
+    let timeRemaining = 10 * 60; // 10 minutes in seconds
+
     async function fetchQuiz() {
       const params = new URLSearchParams(window.location.search);
       const quizId = params.get('quizId');
@@ -173,6 +178,25 @@
         event.preventDefault();
         gradeQuiz(quiz, correctAnswers);
       });
+
+      startCountdown();
+    }
+
+    function startCountdown() {
+      countdown = setInterval(function() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        document.getElementById('timer').textContent = `Time remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeRemaining <= 0) {
+          clearInterval(countdown);
+          document.getElementById('quiz-form').querySelectorAll('input').forEach(input => input.disabled = true);
+          document.querySelector('button[type="submit"]').disabled = true;
+          gradeQuiz();
+        } else {
+          timeRemaining--;
+        }
+      }, 1000);
     }
 
     function gradeQuiz(quiz, correctAnswers) {
