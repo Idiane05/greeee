@@ -1,8 +1,8 @@
-/* General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto Slab', serif;
   }
   
   body {
@@ -32,39 +32,51 @@
   
   nav {
     display: flex;
-    gap: 2rem; /* Adjusted the gap between nav links */
+    gap: 2rem; 
   }
   
   nav a {
     color: rgb(22, 18, 18);
     text-decoration: none;
     font-size: 1rem;
+  
   }
   
   nav a.active {
     font-weight: bold;
   }
   
-  nav a:hover {
-    text-decoration: underline;
-  }
   
-  /* Main Content Styles */
+  
   main {
     margin: 2rem 0;
   }
   
-  /* Hero Section */
   .hero {
+    position: relative;
     background: url('images/restore.jpg') no-repeat center center/cover;
     padding: 4rem 2rem;
     color: rgb(15, 14, 14);
     text-align: center;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); 
+    z-index: 1;
   }
   
   .hero-content h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    margin-top: 10rem;
   }
   
   .hero-content p {
@@ -85,7 +97,6 @@
     background-color: #45a049;
   }
   
-  /* Featured Courses Section */
   .featured-courses {
     margin: 2rem 0;
     text-align: center;
@@ -139,7 +150,6 @@
     background-color: #45a049;
   }
   
-  /* Call to Action Section */
   .call-to-action {
     background-color: #4CAF50;
     color: white;
@@ -170,7 +180,6 @@
     background-color: #f4f4f4;
   }
   
-  /* About Us Page */
   .about-banner {
     background-color: #81C784;
     color: white;
@@ -211,14 +220,13 @@
   }
   
   
-  /* Our Values Section */
   .our-values {
     padding: 60px 20px;
     text-align: center;
   }
   
   .our-values h2 {
-    color: #4CAF50; /* Green heading color */
+    color: #4CAF50; 
     margin-bottom: 40px;
   }
   
@@ -244,10 +252,9 @@
   }
   
   .value-card p {
-    color: #101111; /* Gray text color */
+    color: #101111; 
   }
   
-  /* Responsive Design for Our Values Section */
   @media (max-width: 768px) {
     .values-grid {
       flex-direction: column;
@@ -259,7 +266,6 @@
     }
   }
   
-  /* Footer */
   footer {
     background-color: #070808;
     color: rgb(248, 248, 248);
@@ -272,7 +278,6 @@
     margin: 0.5rem 0;
   }
   
-  /* Contact Us Page */
   .contact-banner {
     background-color: #079643;
     color: white;
@@ -316,11 +321,10 @@
   }
   
   .contact-form button:hover {
-    background-color: #FFEB3B;
+    background-color: rgb(109, 174, 109);
     color: #08b363;
   }
   
-  /* Responsive Styles */
   @media (max-width: 768px) {
     header {
       flex-direction: column;
@@ -376,9 +380,8 @@
     }
   }
   
-  /* Course Catalog Banner */
   .course-banner {
-    background-color: #81C784; /* Light Green */
+    background-color: #81C784; 
     color: white;
     text-align: center;
     padding: 50px 20px;
@@ -393,7 +396,6 @@
     font-size: 1.2rem;
   }
   
-  /* Search and Filter Section */
   .search-filter {
     display: flex;
     justify-content: space-between;
@@ -416,7 +418,7 @@
   .search-bar input {
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #4CAF50; /* Green border */
+    border: 1px solid #4CAF50; 
     border-radius: 5px;
     width: 100%;
   }
@@ -441,7 +443,6 @@
     margin-right: 15px;
   }
   
-  /* Course List */
   .course-list {
     display: flex;
     flex-wrap: wrap;
@@ -484,12 +485,8 @@
       cursor: pointer;
     }
     
-    .course-item button:hover {
-      background-color: #FFEB3B; /* Bright Yellow on hover */
-      color: #004D40; /* Dark Teal text on hover */
-    }
     
-    /* Responsive Design for Course Catalog */
+    
     @media (max-width: 768px) {
       .search-filter {
         flex-direction: column;
@@ -512,19 +509,18 @@
       }
     }
   
-  /* Videos Section */
   .videos {
     padding: 60px 20px;
     text-align: center;
   }
   
   .videos h2 {
-    color: #4CAF50; /* Primary Green for the heading */
+    color: #4CAF50; 
     margin-bottom: 20px;
   }
   
   .videos p {
-    color: #0f1011; /* Gray for text */
+    color: #0f1011; 
     margin-bottom: 40px;
   }
   
@@ -539,17 +535,15 @@
     margin-bottom: 20px;
   }
   
-  /* Ensure that iframes act as block elements and remove unnecessary spacing */
   .video-item iframe {
     display: block;
     width: 100%;
     height: auto;
-    border: none; /* Remove iframe border if present */
+    border: none; 
     margin: 0;
     padding: 0;
   }
   
-  /* Responsive Design for Videos Section */
   @media (max-width: 768px) {
     .video-grid {
       flex-direction: column;
@@ -557,11 +551,10 @@
   
     .video-item {
       width: 1000%;
-      margin-bottom: 40px; /* Corrected spacing */
+      margin-bottom: 40px; 
     }
   }
   
-  /* Login Page Styles */
   #loginForm {
     width: 100%;
     max-width: 400px;
@@ -570,8 +563,8 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Added to ensure proper layering */
-    z-index: 1; /* Ensure form is above other elements */
+    position: relative; 
+    z-index: 1; 
   }
   
   .container {
@@ -603,8 +596,8 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    position: relative; /* Ensure buttons remain interactive */
-    z-index: 2; /* Prioritize buttons over other elements */
+    position: relative; 
+    z-index: 2; 
   }
   
   button.cancelbtn {
@@ -624,7 +617,6 @@
     float: right;
   }
   
-  /* Responsive Styles for Login Form */
   @media (max-width: 768px) {
     #loginForm {
       padding: 15px;
@@ -661,11 +653,9 @@
   
   body {
     background-color: #f0f4f8;
-    color: #333;
     line-height: 1.6;
   }
   
-  /* Form Container */
   .register-container {
     width: 100%;
     max-width: 500px;
@@ -749,40 +739,39 @@
   .course-item img {
     width: 300px;
     height: 200px;
-    object-fit: cover; /* This ensures the image maintains its aspect ratio without distortion */
+    object-fit: cover;
   }
 
-  /* Add padding to each course item to prevent the content from touching the container edges */
 .course-item {
-  padding: 20px;      /* Adds space inside the box */
-  margin: 10px;       /* Optional: adds space between the course items */
-  background-color: #f9f9f9;  /* Optional: gives the box a light background color */
-  border-radius: 8px; /* Optional: rounds the corners of the box */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+  padding: 20px;      
+  margin: 10px;       
+  background-color: #f9f9f9;  
+  border-radius: 8px; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .course-item img {
-  width: 240px;       /* Set the image width */
-  height: 100px;      /* Set the image height */
-  object-fit: cover;  /* Ensures the image covers the box while maintaining its aspect ratio */
-  object-position: center; /* Optional: ensures the image is centered */
-  margin-bottom: 10px; /* Adds space between the image and the text */
+  width: 240px;       
+  height: 100px;      
+  object-fit: cover; 
+  object-position: center; 
+  margin-bottom: 10px; 
 }
 
 .course-item h3 {
-  font-size: 18px;     /* Set the font size for the course title */
-  margin-bottom: 10px; /* Adds space between the title and description */
+  font-size: 18px;     
+  margin-bottom: 10px; 
 }
 
 .course-item p {
-  font-size: 14px;     /* Set the font size for the description */
-  margin-bottom: 10px; /* Adds space between the description and button */
+  font-size: 14px;     
+  margin-bottom: 10px; 
 }
 
 .enroll-btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #4CAF50; /* Green color */
+  background-color: #4CAF50; 
   color: white;
   text-decoration: none;
   border-radius: 5px;
@@ -790,5 +779,5 @@
 }
 
 .enroll-btn:hover {
-  background-color: #45a049; /* Darker green when hovered */
+  background-color: #45a049; 
 }

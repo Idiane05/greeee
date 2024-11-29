@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details | Green Academy</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap">
+
+  <link rel="stylesheet" href="main.css">
+</head>
+<style>
+
+
+.course-detail-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .course-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #4CAF50;
+    text-align: center;
+  }
+  
+  .course-image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .course-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .course-description {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 22px;
+    color: #4CAF50;
+    margin: 20px 0 10px;
+  }
+  
+  .instructor-info {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .resource-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .resource-list li {
+    margin: 10px 0;
+  }
+  
+  .resource-list li a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  .resource-list li a:hover {
+    text-decoration: underline;
+  }
+  
+  .enroll-btn {
+    display: block; 
+    text-align: center;
+    background: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 12px 20px; 
+    margin: 20px auto; 
+    width: auto; 
+    max-width: 450px; 
+  }
+  
+  .enroll-btn:hover {
+    background: #004d40;
+  }
+  
+  
+ 
+</style>
+
+<body>
+  <header>
+    <img src="images/academy.png" alt="Green Academy Logo" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+      <a href="about.html">About Us</a>
+      <a href="courses.html">Courses</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="course-detail" class="course-detail-container">
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Green Academy, All Rights Reserved.</p>
+    <p>Email: greenacademy@gmail.com , Phone: +250789101234</p>
+  </footer>
+
+  <script type="module">
+    async function fetchCourseDetails() {
+      const params = new URLSearchParams(window.location.search);
+      const courseId = params.get('courseId');
+
+      if (!courseId) {
+        document.getElementById('course-detail').innerHTML = '<p>Course not found.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch('mock-api.json');
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+        const data = await response.json();
+
+        const course = data.courses.find(c => c.id == courseId);
+        if (!course) {
+          document.getElementById('course-detail').innerHTML = '<p>Course not found.</p>';
+          return;
+        }
+
+        const instructor = data.instructors.find(i => i.id == course.instructorId);
+
+        document.getElementById('course-detail').innerHTML = `
+          <h1 class="course-title">${course.title}</h1>
+          <div class="course-image-wrapper">
+            <img src="${course.image}" alt="${course.title}" class="course-image">
+          </div>
+          <p class="course-description">${course.description}</p>
+          <h2 class="section-title">Instructor</h2>
+          <p class="instructor-info"><strong>${instructor.name}</strong>: ${instructor.bio}</p>
+          <h2 class="section-title">Resources</h2>
+          <ul class="resource-list">
+            ${course.resources.map(resourceId => {
+              const resource = data.resources.find(r => r.id == resourceId);
+              return `<li><a href="${resource.url}" target="_blank">${resource.title}</a></li>`;
+            }).join('')}
+          </ul>
+          <a href="${course.url}" class="enroll-btn">Enroll Now</a>
+        `;
+      } catch (error) {
+        console.error('Error fetching course details:', error);
+        document.getElementById('course-detail').innerHTML = '<p>Failed to load course details. Please try again later.</p>';
+      }
+    }
+
+    fetchCourseDetails();
+  </script>
+</body>
+
+</html>
