@@ -7,7 +7,34 @@
   <title>The Green Academy</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap">
   <link rel="stylesheet" href="main.css">
+  <style>
+    .image-wrapper {
+      width: 100%;
+      height: 200px; /* Set the height */
+      overflow: hidden; /* Ensures the image doesn't overflow */
+      border-radius: 8px; /* Optional, adds rounded corners */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .image-wrapper img {
+      width: 100%; 
+      height: auto; 
+      object-fit: cover;
+    }
+    
+    .enroll-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 10px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
 </head>
+
 <body>
  <!-- Header -->
  <header>
@@ -34,28 +61,28 @@
       <h2>Featured Courses</h2>
       <div class="courses-grid">
         <article class="course-card">
-          <div>
+          <div class="image-wrapper">
             <img src="images/climate.jpg" alt="Course image: Climate Change 101">
           </div>
           <h3>Climate Change</h3>
           <p>Learn the basics of climate change and its impact on the planet.</p>
-          <a href="courses.html" class="enroll-btn">Enroll Now</a>
+          <a href="courses.html" class="enroll-btn">View Details</a>
         </article>
         <article class="course-card">
-          <div>
+          <div class="image-wrapper">
             <img src="images/download.jpg" alt="Course image: Biodiversity and Conservation">
           </div>
           <h3>Biodiversity and Conservation</h3>
           <p>Explore the importance of biodiversity and how to protect it.</p>
-          <a href="courses.html" class="enroll-btn">Enroll Now</a>
+          <a href="courses.html" class="enroll-btn">View Details</a>
         </article>
         <article class="course-card">
-          <div>
+          <div class="image-wrapper">
             <img src="images/energy.jpg" alt="Course image: Renewable Energy Solutions">
           </div>
           <h3>Renewable Energy Solutions</h3>
           <p>Discover sustainable energy solutions for a greener future.</p>
-          <a href="courses.html" class="enroll-btn">Enroll Now</a>
+          <a href="courses.html" class="enroll-btn">View Details</a>
         </article>
       </div>
     </section>
