@@ -200,6 +200,7 @@
     }
 
     function gradeQuiz(quiz, correctAnswers) {
+      clearInterval(countdown); // Stop the countdown when quiz is submitted
       const form = document.getElementById('quiz-form');
       const formData = new FormData(form);
       let score = 0;
@@ -249,6 +250,7 @@
     }
 
     fetchQuiz();
-  </script>
+</script>
+
 </body>
 </html>
