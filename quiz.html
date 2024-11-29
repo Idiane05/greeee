@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz | Green Academy</title>
+  <link rel="stylesheet" href="main.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7fc;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #4CAF50;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #quiz-container {
+      padding: 20px;
+    }
+
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+
+    .quiz-question p {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      width: 100%;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #quiz-results {
+      display: none;
+      padding: 20px;
+    }
+
+    #quiz-results h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    #quiz-results p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    #quiz-results div {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    #quiz-results div p {
+      margin-bottom: 8px;
+    }
+
+    .correct-answer {
+      color: green;
+      font-weight: bold;
+    }
+
+    .incorrect-answer {
+      color: red;
+      font-weight: bold;
+    }
+
+    .quiz-header {
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 10px;
+      }
+
+      button[type="submit"] {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Green Academy Quiz</h1>
+    <section id="quiz-container">
+    </section>
+    <section id="quiz-results" style="display: none;">
+    </section>
+  </main>
+
+  <script>
+    async function fetchQuiz() {
+      const params = new URLSearchParams(window.location.search);
+      const quizId = params.get('quizId');
+      const response = await fetch('mock-api.json');
+      const data = await response.json();
+      const quiz = data.quizzes.find(q => q.id == quizId);
+
+      if (!quiz) {
+        document.getElementById('quiz-container').innerHTML = '<p>Quiz not found.</p>';
+        return;
+      }
+
+      const correctAnswers = quiz.questions.map(q => q.answer);
+
+      const quizHTML = quiz.questions.map((q, index) => `
+        <div class="quiz-question">
+          <p>${index + 1}. ${q.question}</p>
+          ${q.options.map((opt, i) => `
+            <label>
+              <input type="radio" name="q${index}" value="${i}">
+              ${opt}
+            </label>
+          `).join('')}
+        </div>
+      `).join('');
+
+      document.getElementById('quiz-container').innerHTML = `
+        <div class="quiz-header">You are on the quiz page. Please answer the questions below:</div>
+        <form id="quiz-form">
+          ${quizHTML}
+          <button type="submit">Submit</button>
+        </form>
+      `;
+
+      document.getElementById('quiz-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        gradeQuiz(quiz, correctAnswers);
+      });
+    }
+
+    function gradeQuiz(quiz, correctAnswers) {
+      const form = document.getElementById('quiz-form');
+      const formData = new FormData(form);
+      let score = 0;
+      let userAnswers = [];
+      let correctAnswerHTML = '';
+
+      correctAnswers.forEach((correctAnswer, index) => {
+        const userAnswer = formData.get(`q${index}`);
+        userAnswers.push(userAnswer);
+        const correctOption = correctAnswer;
+
+        if (userAnswer == correctOption) {
+          score++;
+        }
+
+        const userAnswerText = userAnswer !== null ? quiz.questions[index].options[userAnswer] : 'No answer';
+        const correctAnswerText = quiz.questions[index].options[correctOption];
+
+        correctAnswerHTML += `
+          <p><strong>Q${index + 1}: </strong><br>
+            Your answer: <span class="${userAnswer == correctOption ? 'correct-answer' : 'incorrect-answer'}">${userAnswerText}</span><br>
+            Correct answer: <span class="correct-answer">${correctAnswerText}</span>
+          </p>
+        `;
+      });
+
+      document.getElementById('quiz-container').style.display = 'none';
+      document.getElementById('quiz-results').style.display = 'block';
+
+      document.getElementById('quiz-results').innerHTML = `
+        <h2>Quiz Results</h2>
+        <p>You scored ${score} out of ${correctAnswers.length}.</p>
+        <p>Your grade: ${getGrade(score, correctAnswers.length)}</p>
+        <div>
+          ${correctAnswerHTML}
+        </div>
+      `;
+    }
+
+    function getGrade(score, totalQuestions) {
+      const percentage = (score / totalQuestions) * 100;
+      if (percentage >= 90) return 'A';
+      if (percentage >= 80) return 'B';
+      if (percentage >= 70) return 'C';
+      if (percentage >= 60) return 'D';
+      return 'F';
+    }
+
+    fetchQuiz();
+  </script>
+</body>
+</html>

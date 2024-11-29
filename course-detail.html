@@ -124,50 +124,58 @@
     async function fetchCourseDetails() {
       const params = new URLSearchParams(window.location.search);
       const courseId = params.get('courseId');
-
+    
       if (!courseId) {
         document.getElementById('course-detail').innerHTML = '<p>Course not found.</p>';
         return;
       }
-
+    
       try {
-        const response = await fetch('mock-api.json');
+        const response = await fetch('./mock-api.json');
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
-
+    
         const course = data.courses.find(c => c.id == courseId);
         if (!course) {
           document.getElementById('course-detail').innerHTML = '<p>Course not found.</p>';
           return;
         }
-
-        const instructor = data.instructors.find(i => i.id == course.instructorId);
-
+    
+        const instructor = data.instructors.find(i => i.id == course.instructorId) || { name: 'Unknown', bio: 'No information available' };
+    
+        const resources = course.resources.map(resourceId => {
+          const resource = data.resources.find(r => r.id == resourceId);
+          return resource ? `<li><a href="${resource.url}" target="_blank">${resource.title}</a></li>` : '';
+        }).join('');
+    
+        // Find the quiz associated with the course
+        const quiz = data.quizzes.find(q => q.id == courseId); // Matching course ID to quiz ID
+    
+        // If no quiz is found for this course, hide the "Take Quiz" button
+        const quizButton = quiz ? `<a href="quiz.html?quizId=${quiz.id}" class="enroll-btn">Take Quiz</a>` : '';
+    
         document.getElementById('course-detail').innerHTML = `
           <h1 class="course-title">${course.title}</h1>
           <div class="course-image-wrapper">
             <img src="${course.image}" alt="${course.title}" class="course-image">
           </div>
-          <p class="course-description">${course.description}</p>
           <h2 class="section-title">Instructor</h2>
           <p class="instructor-info"><strong>${instructor.name}</strong>: ${instructor.bio}</p>
+          <p class="course-description">${course.description}</p>
           <h2 class="section-title">Resources</h2>
           <ul class="resource-list">
-            ${course.resources.map(resourceId => {
-              const resource = data.resources.find(r => r.id == resourceId);
-              return `<li><a href="${resource.url}" target="_blank">${resource.title}</a></li>`;
-            }).join('')}
+            ${resources || '<li>No resources available.</li>'}
           </ul>
-          <a href="https://www.undp.org/sites/g/files/zskgke326/files/migration/eurasia/Climatebox_textbook_EN.pdf" class="enroll-btn">Enroll Now</a>
+          ${quizButton}
         `;
       } catch (error) {
         console.error('Error fetching course details:', error);
         document.getElementById('course-detail').innerHTML = '<p>Failed to load course details. Please try again later.</p>';
       }
     }
-
     fetchCourseDetails();
+     
   </script>
 </body>
 
-</html>
+</html> 

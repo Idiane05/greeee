@@ -91,7 +91,6 @@
   </footer>
 
   <script type="module">
-    
     async function fetchCourses() {
       try {
         const response = await fetch('mock-api.json');
@@ -104,19 +103,29 @@
         data.courses.forEach(course => {
           const courseItem = document.createElement('article');
           courseItem.classList.add('course-item');
+
+          const maxDescriptionLength = 100; 
+          const truncatedDescription = course.description.length > maxDescriptionLength
+            ? course.description.substring(0, maxDescriptionLength) + '.....'
+            : course.description;
+
           courseItem.innerHTML = `
             <img src="${course.image}" alt="${course.title}" style="width:240px; height: 100px;">
             <h3>${course.title}</h3>
-            <p>${course.description}</p>
+            <p class="course-description">${truncatedDescription}</p>
+            <button class="read-more-btn" data-course-id="${course.id}">Read More</button>
             <button class="view-details-btn" data-course-id="${course.id}">View Details</button>
           `;
           courseList.appendChild(courseItem);
-        });
 
-        document.querySelectorAll('.view-details-btn').forEach(button => {
-          button.addEventListener('click', (event) => {
-            const courseId = event.target.getAttribute('data-course-id');
-            window.location.href = `course-detail.html?courseId=${courseId}`;
+          const readMoreButton = courseItem.querySelector('.read-more-btn');
+          readMoreButton.addEventListener('click', () => toggleDescription(course, courseItem));
+
+          document.querySelectorAll('.view-details-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+              const courseId = event.target.getAttribute('data-course-id');
+              window.location.href = `course-detail.html?courseId=${courseId}`;
+            });
           });
         });
       } catch (error) {
@@ -125,8 +134,18 @@
       }
     }
 
-    fetchCourses();
+    function toggleDescription(course, courseItem) {
+      const descriptionParagraph = courseItem.querySelector('.course-description');
+      if (descriptionParagraph.textContent.length > 150) {
+        descriptionParagraph.textContent = course.description;
+        courseItem.querySelector('.read-more-btn').textContent = 'Show Less';
+      } else {
+        descriptionParagraph.textContent = course.description.substring(0, 150) + '...';
+        courseItem.querySelector('.read-more-btn').textContent = 'Read More';
+      }
+    }
 
+    fetchCourses();
   </script>
 </body>
 
